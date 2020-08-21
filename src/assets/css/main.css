@@ -1258,7 +1258,12 @@ h4 {
   transform: translateX(-50%) !important;
   padding: 3rem 6rem 4rem 6rem;
 }
-@media (max-width: 1399px) {
+
+.status{
+  text-align: center;
+}
+
+@media (max-width: 1350px) {
   .paints {
     display: none;
   }
