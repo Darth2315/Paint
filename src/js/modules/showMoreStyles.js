@@ -1,3 +1,5 @@
+import {getResource} from '../services/requests';
+
 const showMoreStyles = (trigger, styles) => {
 
     const cards = document.querySelectorAll(styles),
