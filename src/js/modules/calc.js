@@ -1,12 +1,25 @@
+import {getResource} from '../services/requests';
+
 const calc = (size, material, options, promocode, result) => {
 
     const sizeBlock = document.querySelector(size),
           materialBlock = document.querySelector(material),
           optionsBlock = document.querySelector(options),
           promocodeBlock = document.querySelector(promocode),
-          resultBlock = document.querySelector(result);
+          resultBlock = document.querySelector(result),
+          opt = document.querySelectorAll('option');
 
     let sum = 0;
+
+    getResource('http://localhost:3000/values')
+        .then(res => createValueForOptions(res))
+        .catch(error => console.log(error));
+    
+    function createValueForOptions(response) {
+        response.forEach(({value}, i) => {
+            opt[i].setAttribute('value', `${value}`);
+        });
+    }
 
     const calcFunc = () => {
         sum = Math.round((+sizeBlock.value) * (+materialBlock.value) + (+optionsBlock.value));

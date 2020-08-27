@@ -52,7 +52,3 @@ const showMoreStyles = (trigger, wrapper) => {
 };
 
 export default showMoreStyles;
-
-{/* <div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
-					
-				</div> */}

@@ -4351,6 +4351,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_checkTextInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInput */ "./src/js/modules/checkTextInput.js");
 /* harmony import */ var _modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showMoreStyles */ "./src/js/modules/showMoreStyles.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
+/* harmony import */ var _modules_changeCalcState__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/changeCalcState */ "./src/js/modules/changeCalcState.js");
+
 
 
 
@@ -4361,10 +4363,12 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
+  var calcState = {};
+  Object(_modules_changeCalcState__WEBPACK_IMPORTED_MODULE_7__["default"])(calcState);
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
   Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.main-slider-item', 'vertical');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_2__["default"])(calcState);
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="phone"]');
   Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="name"]');
   Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
@@ -4383,13 +4387,32 @@ window.addEventListener('DOMContentLoaded', function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/requests */ "./src/js/services/requests.js");
+
+
+
 var calc = function calc(size, material, options, promocode, result) {
   var sizeBlock = document.querySelector(size),
       materialBlock = document.querySelector(material),
       optionsBlock = document.querySelector(options),
       promocodeBlock = document.querySelector(promocode),
-      resultBlock = document.querySelector(result);
+      resultBlock = document.querySelector(result),
+      opt = document.querySelectorAll('option');
   var sum = 0;
+  Object(_services_requests__WEBPACK_IMPORTED_MODULE_1__["getResource"])('http://localhost:3000/values').then(function (res) {
+    return createValueForOptions(res);
+  }).catch(function (error) {
+    return console.log(error);
+  });
+
+  function createValueForOptions(response) {
+    response.forEach(function (_ref, i) {
+      var value = _ref.value;
+      opt[i].setAttribute('value', "".concat(value));
+    });
+  }
 
   var calcFunc = function calcFunc() {
     sum = Math.round(+sizeBlock.value * +materialBlock.value + +optionsBlock.value);
@@ -4410,6 +4433,46 @@ var calc = function calc(size, material, options, promocode, result) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (calc);
+
+/***/ }),
+
+/***/ "./src/js/modules/changeCalcState.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/changeCalcState.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var changeCalcState = function changeCalcState(state) {
+  var picSize = document.querySelectorAll('#size'),
+      picMaterial = document.querySelectorAll('#material'),
+      picOptions = document.querySelectorAll('#options'),
+      picPromocode = document.querySelectorAll('.promocode'),
+      picSum = document.querySelectorAll('.calc-price');
+
+  function bindActionToSum(event, elem, prop) {
+    elem.forEach(function (item) {
+      item.addEventListener(event, function () {
+        state[prop] = item.value;
+      });
+    });
+  }
+
+  console.log(state);
+  bindActionToSum('change', picSize, 'size');
+  bindActionToSum('change', picMaterial, 'material');
+  bindActionToSum('change', picOptions, 'option');
+  bindActionToSum('input', picPromocode, 'promocode');
+  bindActionToSum('change', picSum, 'sum');
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (changeCalcState);
 
 /***/ }),
 
@@ -4479,7 +4542,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var forms = function forms() {
+var forms = function forms(state) {
   var form = document.querySelectorAll('form'),
       inputs = document.querySelectorAll('input'),
       upload = document.querySelectorAll('[name="upload"]'); // checkNumInputs('input[name="user_phone"]');
@@ -4536,9 +4599,17 @@ var forms = function forms() {
       var formData = new FormData(item);
       var api;
       item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
+
+      if (item.classList.contains('calc_form')) {
+        for (var key in state) {
+          formData.append(key, state[key]);
+        }
+      }
+
       console.log(api);
       Object(_services_requests__WEBPACK_IMPORTED_MODULE_6__["postData"])(api, formData).then(function (res) {
         console.log(res);
+        console.log(state);
         statusImg.setAttribute('src', message.ok);
         textMessage.textContent = message.success;
       }).catch(function () {
@@ -4818,11 +4889,6 @@ var showMoreStyles = function showMoreStyles(trigger, wrapper) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (showMoreStyles);
-{
-  /* <div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
-  				
-  			</div> */
-}
 
 /***/ }),
 
