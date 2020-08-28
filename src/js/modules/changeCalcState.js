@@ -3,23 +3,24 @@ const changeCalcState = (state) => {
           picMaterial = document.querySelectorAll('#material'),
           picOptions = document.querySelectorAll('#options'),
           picPromocode = document.querySelectorAll('.promocode'),
-          picSum = document.querySelectorAll('.calc-price');
-          
+          picSum = document.querySelector('.calc-price');
+
+          state.sum = picSum.textContent;
+         
     function bindActionToSum(event, elem, prop) {
-        elem.forEach(item => {
+        elem.forEach((item) => {
             item.addEventListener(event, () => {
                 state[prop] = item.value;
+                state.sum = picSum.textContent;
+                console.log(state);
             });
-        });
+        }); 
     }
-
-    console.log(state);
 
     bindActionToSum('change', picSize, 'size');
     bindActionToSum('change', picMaterial, 'material');
     bindActionToSum('change', picOptions, 'option');
     bindActionToSum('input', picPromocode, 'promocode');
-    bindActionToSum('change', picSum, 'sum');
 };
 
 export default changeCalcState;

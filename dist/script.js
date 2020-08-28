@@ -4454,22 +4454,23 @@ var changeCalcState = function changeCalcState(state) {
       picMaterial = document.querySelectorAll('#material'),
       picOptions = document.querySelectorAll('#options'),
       picPromocode = document.querySelectorAll('.promocode'),
-      picSum = document.querySelectorAll('.calc-price');
+      picSum = document.querySelector('.calc-price');
+  state.sum = picSum.textContent;
 
   function bindActionToSum(event, elem, prop) {
     elem.forEach(function (item) {
       item.addEventListener(event, function () {
         state[prop] = item.value;
+        state.sum = picSum.textContent;
+        console.log(state);
       });
     });
   }
 
-  console.log(state);
   bindActionToSum('change', picSize, 'size');
   bindActionToSum('change', picMaterial, 'material');
   bindActionToSum('change', picOptions, 'option');
   bindActionToSum('input', picPromocode, 'promocode');
-  bindActionToSum('change', picSum, 'sum');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (changeCalcState);
