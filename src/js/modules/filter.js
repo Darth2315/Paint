@@ -36,33 +36,19 @@ const filter = () => {
         }
     };
 
-    btnAll.addEventListener('click', () => {
-        typeFilter(markAll);
-    });
+    function clickOnBtn(btn, mark) {
+        btn.addEventListener('click', () => {
+            typeFilter(mark);
+        });
+    }
 
-    btnLovers.addEventListener('click', () => {
-        typeFilter(markLovers);
-    });
-
-    btnChef.addEventListener('click', () => {
-        typeFilter(markChef);
-    });
-
-    btnGirl.addEventListener('click', () => {
-        typeFilter(markGirl);
-    });
-
-    btnGuy.addEventListener('click', () => {
-        typeFilter(markGuy);
-    });
-
-    btnGrandmother.addEventListener('click', () => {
-        typeFilter();
-    });
-
-    btnGranddad.addEventListener('click', () => {
-        typeFilter();
-    });
+    clickOnBtn(btnAll, markAll);
+    clickOnBtn(btnLovers, markLovers);
+    clickOnBtn(btnChef, markChef);
+    clickOnBtn(btnGirl, markGirl);
+    clickOnBtn(btnGuy, markGuy);
+    clickOnBtn(btnGrandmother);
+    clickOnBtn(btnGranddad);
 
     menu.addEventListener('click', (e) => {
         let target = e.target;

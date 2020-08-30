@@ -4566,27 +4566,19 @@ var filter = function filter() {
     }
   };
 
-  btnAll.addEventListener('click', function () {
-    typeFilter(markAll);
-  });
-  btnLovers.addEventListener('click', function () {
-    typeFilter(markLovers);
-  });
-  btnChef.addEventListener('click', function () {
-    typeFilter(markChef);
-  });
-  btnGirl.addEventListener('click', function () {
-    typeFilter(markGirl);
-  });
-  btnGuy.addEventListener('click', function () {
-    typeFilter(markGuy);
-  });
-  btnGrandmother.addEventListener('click', function () {
-    typeFilter();
-  });
-  btnGranddad.addEventListener('click', function () {
-    typeFilter();
-  });
+  function clickOnBtn(btn, mark) {
+    btn.addEventListener('click', function () {
+      typeFilter(mark);
+    });
+  }
+
+  clickOnBtn(btnAll, markAll);
+  clickOnBtn(btnLovers, markLovers);
+  clickOnBtn(btnChef, markChef);
+  clickOnBtn(btnGirl, markGirl);
+  clickOnBtn(btnGuy, markGuy);
+  clickOnBtn(btnGrandmother);
+  clickOnBtn(btnGranddad);
   menu.addEventListener('click', function (e) {
     var target = e.target;
 
