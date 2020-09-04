@@ -14,26 +14,36 @@ const scrolling = (upSelector) => {
     // Smooth scrolling with requestAnimationFrame
 
     const links = document.querySelectorAll('[href^="#"]'),
-          speed = 0.7;
+          speed = 0.3;
 
     
     links.forEach(item => {
         item.addEventListener('click', function(event) {
             event.preventDefault();
 
-        let widthTop = document.documentElement.scrollTop,
-            hash = this.hash,
-            toBlock = document.querySelector(hash),
-            start = null;
+            let widthTop = document.documentElement.scrollTop,
+                hash = this.hash,
+                toBlock = document.querySelector(hash).getBoundingClientRect().top,
+                start = null;
 
-        requestAnimationFrame(step);
+            requestAnimationFrame(step);
 
-        function step(time) {
-            if (start === null) {
-                start = time;
+            function step(time) {
+                if (start === null) {
+                    start = time;
+                }
+
+                let progress = time - start,
+                    r = (toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock));
+
+                document.documentElement.scrollTo(0, r);
+
+                if (r != widthTop + toBlock) {
+                    requestAnimationFrame(step);
+                } else {
+                    location.hash = hash;
+                }
             }
-        }
-        
         });
     });
 

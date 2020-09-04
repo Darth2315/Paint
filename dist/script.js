@@ -5138,19 +5138,29 @@ var scrolling = function scrolling(upSelector) {
   }); // Smooth scrolling with requestAnimationFrame
 
   var links = document.querySelectorAll('[href^="#"]'),
-      speed = 0.7;
+      speed = 0.3;
   links.forEach(function (item) {
     item.addEventListener('click', function (event) {
       event.preventDefault();
       var widthTop = document.documentElement.scrollTop,
           hash = this.hash,
-          toBlock = document.querySelector(hash),
+          toBlock = document.querySelector(hash).getBoundingClientRect().top,
           start = null;
       requestAnimationFrame(step);
 
       function step(time) {
         if (start === null) {
           start = time;
+        }
+
+        var progress = time - start,
+            r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock);
+        document.documentElement.scrollTo(0, r);
+
+        if (r != widthTop + toBlock) {
+          requestAnimationFrame(step);
+        } else {
+          location.hash = hash;
         }
       }
     });
