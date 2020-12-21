@@ -1,16 +1,14 @@
 import {postData} from '../services/requests';
 
-const forms = (state) => {
+const forms = () => {
     const form = document.querySelectorAll('form'),
           inputs = document.querySelectorAll('input'),
           upload = document.querySelectorAll('[name="upload"]');
-
-    // checkNumInputs('input[name="user_phone"]');
-
+    
     const message = {
-        loading: 'Загрузка',
+        loading: 'Загрузка...',
         success: 'Спасибо! Скоро мы с вами свяжемся',
-        failure: 'Что-то пошло не так',
+        failure: 'Что-то пошло не так...',
         spinner: 'assets/img/spinner.gif',
         ok: 'assets/img/ok.png',
         fail: 'assets/img/fail.png'
@@ -25,9 +23,8 @@ const forms = (state) => {
         inputs.forEach(item => {
             item.value = '';
         });
-
         upload.forEach(item => {
-            item.previousElementSibling.textContent = 'файл не выбран';
+            item.previousElementSibling.textContent = "Файл не выбран";
         });
     };
 
@@ -46,7 +43,7 @@ const forms = (state) => {
     form.forEach(item => {
         item.addEventListener('submit', (e) => {
             e.preventDefault();
-        
+
             let statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
             item.parentNode.appendChild(statusMessage);
@@ -68,17 +65,11 @@ const forms = (state) => {
             const formData = new FormData(item);
             let api;
             item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-            if (item.classList.contains('calc_form')) {
-                for (let key in state) {
-                    formData.append(key, state[key]);
-                }
-            }
             console.log(api);
 
             postData(api, formData)
                 .then(res => {
                     console.log(res);
-                    console.log(state);
                     statusImg.setAttribute('src', message.ok);
                     textMessage.textContent = message.success;
                 })

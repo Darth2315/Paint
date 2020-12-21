@@ -1,72 +1,55 @@
-import {postData} from '../services/requests';
-
 const drop = () => {
-
     // drag *
     // dragend *
-    // dragenter
+    // dragenter - объект над dropArea
     // dragexit *
-    // dragleave
-    // dragover
+    // dragleave - объект за пределами dropArea
+    // dragover - объект зависает над dropArea
     // dragstart *
-    // drop
-
+    // drop - объект отправлен в dropArea
+    
     const fileInputs = document.querySelectorAll('[name="upload"]');
 
     ['dragenter', 'dragleave', 'dragover', 'drop'].forEach(eventName => {
         fileInputs.forEach(input => {
-            input.addEventListener(eventName, preventDefault, false);
+            input.addEventListener(eventName, preventDefaults, false);
         });
     });
 
-    function preventDefault(e) {
+    function preventDefaults(e) {
         e.preventDefault();
         e.stopPropagation();
     }
 
-    function highlight(input) {
-        input.closest('.file_upload').style.borderRadius = '25px';
-        input.closest('.file_upload').style.backgroundColor = 'pink';
+    function highlight(item) {
+        item.closest('.file_upload').style.border = "5px solid yellow";
+        item.closest('.file_upload').style.backgroundColor = "rgba(0,0,0, .7)";
     }
 
-    function unhighlight(input) {
-        input.closest('.file_upload').style.borderRadius = '0px';
-        if (input.closest('.calc_form')) {
-            input.closest('.file_upload').style.backgroundColor = '#fff';
-        } else if (input.closest('.main')) {
-            input.closest('.file_upload').style.backgroundColor = '#F7E7E6';
+    function unhighlight(item) {
+        item.closest('.file_upload').style.border = "none";
+        if (item.closest('.calc_form')) {
+            item.closest('.file_upload').style.backgroundColor = "#fff";
         } else {
-            input.closest('.file_upload').style.backgroundColor = '#ededed';
+            item.closest('.file_upload').style.backgroundColor = "#ededed";
         }
     }
 
-    ['dragenter', 'dragover'].forEach(elementName => {
+    ['dragenter', 'dragover'].forEach(eventName => {
         fileInputs.forEach(input => {
-            input.addEventListener(elementName, () => highlight(input), false);
+            input.addEventListener(eventName, () => highlight(input), false);
         });
     });
 
-    ['dragleave', 'drop'].forEach(elementName => {
+    ['dragleave', 'drop'].forEach(eventName => {
         fileInputs.forEach(input => {
-            input.addEventListener(elementName, () => unhighlight(input), false);
+            input.addEventListener(eventName, () => unhighlight(input), false);
         });
     });
 
     fileInputs.forEach(input => {
         input.addEventListener('drop', (e) => {
             input.files = e.dataTransfer.files;
-
-            if (input.closest('.main')) {
-                preventDefault(e);
-
-                let formData = new FormData();
-                formData.append('file', input.files[0]);
-
-                postData('assets/server.php', formData)
-                .then(res => console.log(res))
-                .catch(err => console.error(err));
-            }
-
             let dots;
             const arr = input.files[0].name.split('.');
 
@@ -75,7 +58,6 @@ const drop = () => {
             input.previousElementSibling.textContent = name;
         });
     });
-
 };
 
 export default drop;

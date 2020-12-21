@@ -4405,17 +4405,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sliders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/sliders */ "./src/js/modules/sliders.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 /* harmony import */ var _modules_mask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mask */ "./src/js/modules/mask.js");
-/* harmony import */ var _modules_checkTextInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInput */ "./src/js/modules/checkTextInput.js");
+/* harmony import */ var _modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInputs */ "./src/js/modules/checkTextInputs.js");
 /* harmony import */ var _modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showMoreStyles */ "./src/js/modules/showMoreStyles.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
-/* harmony import */ var _modules_changeCalcState__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/changeCalcState */ "./src/js/modules/changeCalcState.js");
-/* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
-/* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
-/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
-/* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
-/* harmony import */ var _modules_scrolling__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/scrolling */ "./src/js/modules/scrolling.js");
-/* harmony import */ var _modules_drop__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/drop */ "./src/js/modules/drop.js");
-
+/* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
+/* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
+/* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
+/* harmony import */ var _modules_scrolling__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/scrolling */ "./src/js/modules/scrolling.js");
+/* harmony import */ var _modules_drop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/drop */ "./src/js/modules/drop.js");
 
 
 
@@ -4432,23 +4430,21 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
-  var calcState = {};
-  Object(_modules_changeCalcState__WEBPACK_IMPORTED_MODULE_7__["default"])(calcState);
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
+  Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
   Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.main-slider-item', 'vertical');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_2__["default"])(calcState);
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="phone"]');
-  Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="name"]');
-  Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
+  Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="name"]');
+  Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
   Object(_modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
-  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__["default"])('.sizes-block');
-  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_10__["default"])('.accordion-heading');
-  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_11__["default"])('.burger-menu', '.burger');
-  Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_12__["default"])('.pageup');
-  Object(_modules_drop__WEBPACK_IMPORTED_MODULE_13__["default"])();
+  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
+  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
+  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger-menu', '.burger');
+  Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])('.pageup');
+  Object(_modules_drop__WEBPACK_IMPORTED_MODULE_12__["default"])();
 });
 
 /***/ }),
@@ -4468,35 +4464,26 @@ __webpack_require__.r(__webpack_exports__);
 
 var accordion = function accordion(triggersSelector) {
   var btns = document.querySelectorAll(triggersSelector);
-  btns.forEach(function (item) {
-    item.addEventListener('click', function () {
-      var _this = this;
-
-      btns.forEach(function (btn) {
-        if (!_this.classList.contains('active-style')) {
-          btn.classList.remove('active-style');
-          btn.nextElementSibling.classList.remove('active-content');
-          btn.nextElementSibling.style.maxHeight = '0px';
-        }
-      });
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
       this.classList.toggle('active-style');
       this.nextElementSibling.classList.toggle('active-content');
 
       if (this.classList.contains('active-style')) {
-        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + 'px';
+        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + "px";
       } else {
         this.nextElementSibling.style.maxHeight = '0px';
       }
     });
-  }); //       blocks = document.querySelectorAll(itemsSelector);
-  // blocks.forEach(item => {
-  //     item.classList.add('animated', 'fadeIn');
+  }); //   blocks = document.querySelectorAll(itemsSelector);
+  // blocks.forEach(block => {
+  //     block.classList.add('animated', 'fadeInDown');
   // });
-  // btns.forEach(item => {
-  //     item.addEventListener('click', function() {
+  // btns.forEach(btn => {
+  //     btn.addEventListener('click', function() {
   //         if (!this.classList.contains('active')) {
-  //             btns.forEach(item => {
-  //                 item.classList.remove('active', 'active-style');
+  //             btns.forEach(btn => {
+  //                 btn.classList.remove('active', 'active-style');
   //             });
   //             this.classList.add('active', 'active-style');
   //         }
@@ -4522,7 +4509,7 @@ var burger = function burger(menuSelector, burgerSelector) {
       burgerElem = document.querySelector(burgerSelector);
   menuElem.style.display = 'none';
   burgerElem.addEventListener('click', function () {
-    if (menuElem.style.display == 'none' && window.screen.availWidth < 993) {
+    if (menuElem.style.display == "none" && window.screen.availWidth < 993) {
       menuElem.style.display = 'block';
     } else {
       menuElem.style.display = 'none';
@@ -4548,38 +4535,19 @@ var burger = function burger(menuSelector, burgerSelector) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/requests */ "./src/js/services/requests.js");
-
-
-
 var calc = function calc(size, material, options, promocode, result) {
   var sizeBlock = document.querySelector(size),
       materialBlock = document.querySelector(material),
       optionsBlock = document.querySelector(options),
       promocodeBlock = document.querySelector(promocode),
-      resultBlock = document.querySelector(result),
-      opt = document.querySelectorAll('option');
+      resultBlock = document.querySelector(result);
   var sum = 0;
-  Object(_services_requests__WEBPACK_IMPORTED_MODULE_1__["getResource"])('http://localhost:3000/values').then(function (res) {
-    return createValueForOptions(res);
-  }).catch(function (error) {
-    return console.log(error);
-  });
-
-  function createValueForOptions(response) {
-    response.forEach(function (_ref, i) {
-      var value = _ref.value;
-      opt[i].setAttribute('value', "".concat(value));
-    });
-  }
 
   var calcFunc = function calcFunc() {
     sum = Math.round(+sizeBlock.value * +materialBlock.value + +optionsBlock.value);
 
-    if (sizeBlock.value === '' || materialBlock.value === '') {
-      resultBlock.textContent = 'Пожалуйста, выберите размер и материал картины';
+    if (sizeBlock.value == '' || materialBlock.value == '') {
+      resultBlock.textContent = "Пожалуйста, выберите размер и материал картины";
     } else if (promocodeBlock.value === 'IWANTPOPART') {
       resultBlock.textContent = Math.round(sum * 0.7);
     } else {
@@ -4597,51 +4565,10 @@ var calc = function calc(size, material, options, promocode, result) {
 
 /***/ }),
 
-/***/ "./src/js/modules/changeCalcState.js":
+/***/ "./src/js/modules/checkTextInputs.js":
 /*!*******************************************!*\
-  !*** ./src/js/modules/changeCalcState.js ***!
+  !*** ./src/js/modules/checkTextInputs.js ***!
   \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var changeCalcState = function changeCalcState(state) {
-  var picSize = document.querySelectorAll('#size'),
-      picMaterial = document.querySelectorAll('#material'),
-      picOptions = document.querySelectorAll('#options'),
-      picPromocode = document.querySelectorAll('.promocode'),
-      picSum = document.querySelector('.calc-price');
-  state.sum = picSum.textContent;
-
-  function bindActionToSum(event, elem, prop) {
-    elem.forEach(function (item) {
-      item.addEventListener(event, function () {
-        state[prop] = item.value;
-        state.sum = picSum.textContent;
-        console.log(state);
-      });
-    });
-  }
-
-  bindActionToSum('change', picSize, 'size');
-  bindActionToSum('change', picMaterial, 'material');
-  bindActionToSum('change', picOptions, 'option');
-  bindActionToSum('input', picPromocode, 'promocode');
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (changeCalcState);
-
-/***/ }),
-
-/***/ "./src/js/modules/checkTextInput.js":
-/*!******************************************!*\
-  !*** ./src/js/modules/checkTextInput.js ***!
-  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4654,7 +4581,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var checkTextInput = function checkTextInput(selector) {
+var checkTextInputs = function checkTextInputs(selector) {
   var txtInputs = document.querySelectorAll(selector);
   txtInputs.forEach(function (input) {
     input.addEventListener('keypress', function (e) {
@@ -4662,15 +4589,10 @@ var checkTextInput = function checkTextInput(selector) {
         e.preventDefault();
       }
     });
-    input.addEventListener('input', function () {
-      if (input.value.match(/[a-z]/ig)) {
-        input.value = '';
-      }
-    });
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (checkTextInput);
+/* harmony default export */ __webpack_exports__["default"] = (checkTextInputs);
 
 /***/ }),
 
@@ -4689,8 +4611,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/requests */ "./src/js/services/requests.js");
-
 
 
 
@@ -4698,51 +4618,49 @@ __webpack_require__.r(__webpack_exports__);
 var drop = function drop() {
   // drag *
   // dragend *
-  // dragenter
+  // dragenter - объект над dropArea
   // dragexit *
-  // dragleave
-  // dragover
+  // dragleave - объект за пределами dropArea
+  // dragover - объект зависает над dropArea
   // dragstart *
-  // drop
+  // drop - объект отправлен в dropArea
   var fileInputs = document.querySelectorAll('[name="upload"]');
   ['dragenter', 'dragleave', 'dragover', 'drop'].forEach(function (eventName) {
     fileInputs.forEach(function (input) {
-      input.addEventListener(eventName, preventDefault, false);
+      input.addEventListener(eventName, preventDefaults, false);
     });
   });
 
-  function preventDefault(e) {
+  function preventDefaults(e) {
     e.preventDefault();
     e.stopPropagation();
   }
 
-  function highlight(input) {
-    input.closest('.file_upload').style.borderRadius = '25px';
-    input.closest('.file_upload').style.backgroundColor = 'pink';
+  function highlight(item) {
+    item.closest('.file_upload').style.border = "5px solid yellow";
+    item.closest('.file_upload').style.backgroundColor = "rgba(0,0,0, .7)";
   }
 
-  function unhighlight(input) {
-    input.closest('.file_upload').style.borderRadius = '0px';
+  function unhighlight(item) {
+    item.closest('.file_upload').style.border = "none";
 
-    if (input.closest('.calc_form')) {
-      input.closest('.file_upload').style.backgroundColor = '#fff';
-    } else if (input.closest('.main')) {
-      input.closest('.file_upload').style.backgroundColor = '#F7E7E6';
+    if (item.closest('.calc_form')) {
+      item.closest('.file_upload').style.backgroundColor = "#fff";
     } else {
-      input.closest('.file_upload').style.backgroundColor = '#ededed';
+      item.closest('.file_upload').style.backgroundColor = "#ededed";
     }
   }
 
-  ['dragenter', 'dragover'].forEach(function (elementName) {
+  ['dragenter', 'dragover'].forEach(function (eventName) {
     fileInputs.forEach(function (input) {
-      input.addEventListener(elementName, function () {
+      input.addEventListener(eventName, function () {
         return highlight(input);
       }, false);
     });
   });
-  ['dragleave', 'drop'].forEach(function (elementName) {
+  ['dragleave', 'drop'].forEach(function (eventName) {
     fileInputs.forEach(function (input) {
-      input.addEventListener(elementName, function () {
+      input.addEventListener(eventName, function () {
         return unhighlight(input);
       }, false);
     });
@@ -4750,18 +4668,6 @@ var drop = function drop() {
   fileInputs.forEach(function (input) {
     input.addEventListener('drop', function (e) {
       input.files = e.dataTransfer.files;
-
-      if (input.closest('.main')) {
-        preventDefault(e);
-        var formData = new FormData();
-        formData.append('file', input.files[0]);
-        Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["postData"])('assets/server.php', formData).then(function (res) {
-          return console.log(res);
-        }).catch(function (err) {
-          return console.error(err);
-        });
-      }
-
       var dots;
       var arr = input.files[0].name.split('.');
       arr[0].length > 6 ? dots = "..." : dots = '.';
@@ -4807,11 +4713,11 @@ var filter = function filter() {
       no = document.querySelector('.portfolio-no');
 
   var typeFilter = function typeFilter(markType) {
-    markAll.forEach(function (item) {
-      item.style.display = 'none';
-      item.classList.remove('animated', 'fadeIn');
+    markAll.forEach(function (mark) {
+      mark.style.display = 'none';
+      mark.classList.remove('animated', 'fadeIn');
     });
-    no.style.display = 'none';
+    no.style.display = "none";
     no.classList.remove('animated', 'fadeIn');
 
     if (markType) {
@@ -4825,19 +4731,27 @@ var filter = function filter() {
     }
   };
 
-  function clickOnBtn(btn, mark) {
-    btn.addEventListener('click', function () {
-      typeFilter(mark);
-    });
-  }
-
-  clickOnBtn(btnAll, markAll);
-  clickOnBtn(btnLovers, markLovers);
-  clickOnBtn(btnChef, markChef);
-  clickOnBtn(btnGirl, markGirl);
-  clickOnBtn(btnGuy, markGuy);
-  clickOnBtn(btnGrandmother);
-  clickOnBtn(btnGranddad);
+  btnAll.addEventListener('click', function () {
+    typeFilter(markAll);
+  });
+  btnLovers.addEventListener('click', function () {
+    typeFilter(markLovers);
+  });
+  btnChef.addEventListener('click', function () {
+    typeFilter(markChef);
+  });
+  btnGuy.addEventListener('click', function () {
+    typeFilter(markGuy);
+  });
+  btnGirl.addEventListener('click', function () {
+    typeFilter(markGirl);
+  });
+  btnGrandmother.addEventListener('click', function () {
+    typeFilter();
+  });
+  btnGranddad.addEventListener('click', function () {
+    typeFilter();
+  });
   menu.addEventListener('click', function (e) {
     var target = e.target;
 
@@ -4884,15 +4798,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var forms = function forms(state) {
+var forms = function forms() {
   var form = document.querySelectorAll('form'),
       inputs = document.querySelectorAll('input'),
-      upload = document.querySelectorAll('[name="upload"]'); // checkNumInputs('input[name="user_phone"]');
-
+      upload = document.querySelectorAll('[name="upload"]');
   var message = {
-    loading: 'Загрузка',
+    loading: 'Загрузка...',
     success: 'Спасибо! Скоро мы с вами свяжемся',
-    failure: 'Что-то пошло не так',
+    failure: 'Что-то пошло не так...',
     spinner: 'assets/img/spinner.gif',
     ok: 'assets/img/ok.png',
     fail: 'assets/img/fail.png'
@@ -4907,7 +4820,7 @@ var forms = function forms(state) {
       item.value = '';
     });
     upload.forEach(function (item) {
-      item.previousElementSibling.textContent = 'файл не выбран';
+      item.previousElementSibling.textContent = "Файл не выбран";
     });
   };
 
@@ -4941,17 +4854,9 @@ var forms = function forms(state) {
       var formData = new FormData(item);
       var api;
       item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-
-      if (item.classList.contains('calc_form')) {
-        for (var key in state) {
-          formData.append(key, state[key]);
-        }
-      }
-
       console.log(api);
       Object(_services_requests__WEBPACK_IMPORTED_MODULE_6__["postData"])(api, formData).then(function (res) {
         console.log(res);
-        console.log(state);
         statusImg.setAttribute('src', message.ok);
         textMessage.textContent = message.success;
       }).catch(function () {
@@ -4994,18 +4899,6 @@ var mask = function mask(selector) {
   var setCursorPosition = function setCursorPosition(pos, elem) {
     elem.focus();
 
-    if (pos - 1 <= 2) {
-      elem.addEventListener('click', function () {
-        elem.setSelectionRange(pos, pos);
-        console.log(pos);
-      });
-    } // elem.addEventListener('keydown', (e) => {
-    //     if (e.keyCode == 37) {
-    //         elem.setSelectionRange(2, 2);
-    //     }
-    // });
-
-
     if (elem.setSelectionRange) {
       elem.setSelectionRange(pos, pos);
     } else if (elem.createTextRange) {
@@ -5018,7 +4911,7 @@ var mask = function mask(selector) {
   };
 
   function createMask(event) {
-    var matrix = '+38 (___) ___ __ __',
+    var matrix = '+7 (___) ___ __ __',
         i = 0,
         def = matrix.replace(/\D/g, ''),
         val = this.value.replace(/\D/g, '');
@@ -5032,11 +4925,11 @@ var mask = function mask(selector) {
     });
 
     if (event.type === 'blur') {
-      if (this.value.length == 3) {
+      if (this.value.length == 2) {
         this.value = '';
       }
     } else {
-      setCursorPosition(this.value.length, this); // console.log(this.value.length);
+      setCursorPosition(this.value.length, this);
     }
   }
 
@@ -5066,7 +4959,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var modals = function modals() {
-  var btnPressed;
+  var btnPressed = false;
 
   function bindModal(triggerSelector, modalSelector, closeSelector) {
     var destroy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
@@ -5091,8 +4984,8 @@ var modals = function modals() {
           item.style.display = 'none';
           item.classList.add('animated', 'fadeIn');
         });
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
         document.body.style.marginRight = "".concat(scroll, "px");
       });
     });
@@ -5100,8 +4993,8 @@ var modals = function modals() {
       windows.forEach(function (item) {
         item.style.display = 'none';
       });
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
+      modal.style.display = "none";
+      document.body.style.overflow = "";
       document.body.style.marginRight = "0px";
     });
     modal.addEventListener('click', function (e) {
@@ -5109,8 +5002,8 @@ var modals = function modals() {
         windows.forEach(function (item) {
           item.style.display = 'none';
         });
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
+        modal.style.display = "none";
+        document.body.style.overflow = "";
         document.body.style.marginRight = "0px";
       }
     });
@@ -5121,13 +5014,13 @@ var modals = function modals() {
       var display;
       document.querySelectorAll('[data-modal]').forEach(function (item) {
         if (getComputedStyle(item).display !== 'none') {
-          display = 'block';
+          display = "block";
         }
       });
 
       if (!display) {
         document.querySelector(selector).style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
         var scroll = calcScroll();
         document.body.style.marginRight = "".concat(scroll, "px");
       }
@@ -5146,7 +5039,7 @@ var modals = function modals() {
     return scrollWidth;
   }
 
-  function showModalByScroll(selector) {
+  function openByScroll(selector) {
     window.addEventListener('scroll', function () {
       var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
 
@@ -5159,8 +5052,7 @@ var modals = function modals() {
   bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
   bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
-  showModalByScroll('.fixed-gift');
-  showModalByTime('.popup-consultation', 60000);
+  openByScroll('.fixed-gift'); // showModalByTime('.popup-consultation', 5000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
@@ -5187,27 +5079,29 @@ var pictureSize = function pictureSize(imgSelector) {
   var blocks = document.querySelectorAll(imgSelector);
 
   function showImg(block) {
-    var img = block.querySelector('img');
+    var img = block.querySelector('img'); // something.png => something-1.png
+
     img.src = img.src.slice(0, -4) + '-1.png';
-    block.querySelectorAll('p:not(.sizes-hit)').forEach(function (item) {
-      item.style.display = 'none';
+    block.querySelectorAll('p:not(.sizes-hit)').forEach(function (p) {
+      p.style.display = 'none';
     });
   }
 
   function hideImg(block) {
-    var img = block.querySelector('img');
+    var img = block.querySelector('img'); // something-1.png => something.png
+
     img.src = img.src.slice(0, -6) + '.png';
-    block.querySelectorAll('p:not(.sizes-hit)').forEach(function (item) {
-      item.style.display = 'block';
+    block.querySelectorAll('p:not(.sizes-hit)').forEach(function (p) {
+      p.style.display = 'block';
     });
   }
 
-  blocks.forEach(function (item) {
-    item.addEventListener('mouseover', function () {
-      showImg(item);
+  blocks.forEach(function (block) {
+    block.addEventListener('mouseover', function () {
+      showImg(block);
     });
-    item.addEventListener('mouseout', function () {
-      hideImg(item);
+    block.addEventListener('mouseout', function () {
+      hideImg(block);
     });
   });
 };
@@ -5239,12 +5133,12 @@ var scrolling = function scrolling(upSelector) {
       upElem.classList.add('fadeOut');
       upElem.classList.remove('fadeIn');
     }
-  }); // Smooth scrolling with requestAnimationFrame
+  }); // Scrolling with raf
 
   var links = document.querySelectorAll('[href^="#"]'),
       speed = 0.3;
-  links.forEach(function (item) {
-    item.addEventListener('click', function (event) {
+  links.forEach(function (link) {
+    link.addEventListener('click', function (event) {
       event.preventDefault();
       var widthTop = document.documentElement.scrollTop,
           hash = this.hash,
@@ -5267,7 +5161,7 @@ var scrolling = function scrolling(upSelector) {
         }
       }
     });
-  }); // Pure js smooth scroll
+  }); // Pure js scrolling
   // const element = document.documentElement,
   //       body = document.body;
   // const calcScroll = () => {
@@ -5303,7 +5197,7 @@ var scrolling = function scrolling(upSelector) {
   //             (to < from && scrollTop <= to)
   //         ) {
   //             clearInterval(move);
-  //             // history.replaceState(history.state, document.title, location.href.replace(/#.*$/g, '') + hash);
+  //             history.replaceState(history.state, document.title, location.href.replace(/#.*$/g, '') + hash);
   //         } else {
   //             body.scrollTop += speed;
   //             element.scrollTop += speed;
@@ -5340,33 +5234,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var showMoreStyles = function showMoreStyles(trigger, wrapper) {
-  var btn = document.querySelector(trigger); // cards.forEach(item => {
-  //     item.classList.add('animated', 'fadeInUp');
+  var btn = document.querySelector(trigger); // cards.forEach(card => {
+  //     card.classList.add('animated', 'fadeInUp');
   // });
   // btn.addEventListener('click', () => {
-  //     cards.forEach(item => {
-  //         item.classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs');
-  //         item.classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+  //     cards.forEach(card => {
+  //         card.classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs');
+  //         card.classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
   //     });
+  //     // btn.style.display = 'none';
   //     btn.remove();
   // });
 
   btn.addEventListener('click', function () {
-    Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["getResource"])("http://localhost:3000/styles").then(function (res) {
-      return createCards(res);
+    Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["getResource"])('assets/db.json').then(function (res) {
+      return createCards(res.styles);
     }).catch(function (error) {
-      return errorCardsMessage(error, '#styles .row');
+      return console.log(error);
     });
     this.remove();
   });
-
-  function errorCardsMessage(error, selector) {
-    var errorMessage = document.createElement('div');
-    errorMessage.style.display = 'block';
-    errorMessage.style.textAlign = 'center';
-    errorMessage.textContent = "\u0418\u0437\u0432\u0438\u043D\u0438\u0442\u0435, \u0447\u0442\u043E-\u0442\u043E \u043F\u043E\u0448\u043B\u043E \u043D\u0435 \u0442\u0430\u043A, \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443...";
-    document.querySelector(selector).appendChild(errorMessage);
-  }
 
   function createCards(response) {
     response.forEach(function (_ref) {
@@ -5375,10 +5262,12 @@ var showMoreStyles = function showMoreStyles(trigger, wrapper) {
           link = _ref.link;
       var card = document.createElement('div');
       card.classList.add('animated', 'fadeInUp', 'col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
-      card.innerHTML = "\n                <div class=\"styles-block\">\n                    <img src=".concat(src, " alt=\"styles\">\n                        <h4>").concat(title, "</h4>\n                    <a href=").concat(link, ">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n                </div>\n            ");
+      card.innerHTML = "\n                <div class=\"styles-block\">\n                    <img src=".concat(src, " alt=\"style\">\n                    <h4>").concat(title, "</h4>\n                    <a href=").concat(link, ">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n                </div>\n            ");
       document.querySelector(wrapper).appendChild(card);
     });
   }
+
+  ;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (showMoreStyles);
@@ -5399,9 +5288,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var sliders = function sliders(slides, dir, prev, next) {
-  var items = document.querySelectorAll(slides);
   var slideIndex = 1,
       paused = false;
+  var items = document.querySelectorAll(slides);
 
   function showSlides(n) {
     if (n > items.length) {
@@ -5413,8 +5302,8 @@ var sliders = function sliders(slides, dir, prev, next) {
     }
 
     items.forEach(function (item) {
-      item.classList.add('animated');
-      item.style.display = 'none';
+      item.classList.add("animated");
+      item.style.display = "none";
     });
     items[slideIndex - 1].style.display = 'block';
   }
