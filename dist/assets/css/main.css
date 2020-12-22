@@ -837,6 +837,10 @@ h4 {
   background-color: #f7e7e6;
   padding: 9rem 0;
 }
+.feedback-slider {
+  position: relative;
+  min-height: 400px;
+}
 .feedback-slider-item {
   padding-bottom: 5rem;
 }
@@ -1293,6 +1297,9 @@ h4 {
   .main .file_upload > button {
     width: 100%;
   }
+  .promo-2 img {
+    right: 0;
+  }
 }
 @media (max-width: 1199px) {
   .fixed-gift {
@@ -1388,8 +1395,11 @@ h4 {
   .calc-text {
     margin-right: -9rem;
   }
+  .pageup {
+    right: 3%;
+  }
 }
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .header .burger {
     cursor: pointer;
   }
@@ -1497,6 +1507,16 @@ h4 {
     margin: 4rem auto;
     width: auto;
   }
+  .feedback {
+    padding: 4rem 0;
+  }
+  .feedback-block img {
+    width: 340px;
+    margin-left: 20px;
+  }
+  .feedback-heading, .feedback-text {
+    padding-left: 10px;
+  }
 }
 @media (max-width: 767px) {
   .main-features {
@@ -1579,8 +1599,18 @@ h4 {
   .footer p {
     text-align: center;
   }
+  .main-slider-item img {
+    width: 97%;
+  }
+  .feedback {
+    padding: 1rem 0;
+    min-height: 620px;
+  }
+  .feedback-block img {
+    margin-left: 18%;
+  }
 }
-@media (max-width: 577px) {
+@media (max-width: 576px) {
   h2 {
     font-size: 3.5rem;
   }
@@ -1696,7 +1726,11 @@ h4 {
     padding: 5rem 0;
   }
   .feedback {
-    padding: 5rem 0;
+    padding: 1rem 0;
+  }
+  .feedback-block img {
+    width: 90%;
+    margin-left: 15px;
   }
   .feedback .main-next-btn {
     right: -1rem;
