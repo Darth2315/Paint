@@ -4442,7 +4442,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
-  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger-menu', '.burger');
+  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger-menu', '.burger', '.burger-menu a');
   Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])('.pageup');
   Object(_modules_drop__WEBPACK_IMPORTED_MODULE_12__["default"])();
 });
@@ -4506,9 +4506,14 @@ var accordion = function accordion(triggersSelector) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var burger = function burger(menuSelector, burgerSelector) {
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var burger = function burger(menuSelector, burgerSelector, burgerItemSelector) {
   var menuElem = document.querySelector(menuSelector),
-      burgerElem = document.querySelector(burgerSelector);
+      burgerElem = document.querySelector(burgerSelector),
+      menuItem = document.querySelectorAll(burgerItemSelector);
   menuElem.style.display = 'none';
   burgerElem.addEventListener('click', function () {
     if (menuElem.style.display == "none" && window.screen.availWidth < 993) {
@@ -4521,6 +4526,11 @@ var burger = function burger(menuSelector, burgerSelector) {
     if (window.screen.availWidth > 992) {
       menuElem.style.display = 'none';
     }
+  });
+  menuItem.forEach(function (item) {
+    item.addEventListener('click', function () {
+      menuElem.style.display = 'none';
+    });
   });
 };
 
